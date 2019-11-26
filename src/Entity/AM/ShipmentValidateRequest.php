@@ -77,6 +77,16 @@ class ShipmentValidateRequest extends Base
             'required' => false,
             'subobject' => true,
         ],
+        'DHLInvoiceLanguageCode' => [
+            'type' => 'InvLanguageCode',
+            'required' => false,
+            'subobject' => false,
+        ],
+        'DHLInvoiceType' => [
+            'type' => 'InvoiceType',
+            'required' => false,
+            'subobject' => false,
+        ],
         'ExportDeclaration' => [
             'type' => 'ExportDeclaration',
             'required' => false,
