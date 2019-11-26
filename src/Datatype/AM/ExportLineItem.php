@@ -84,9 +84,14 @@ class ExportLineItem extends Base
             'subobject' => false,
         ],
         'Weight' => [
-            'type' => '',
+            'type' => 'WeightSeg',
             'required' => false,
-            'subobject' => false,
+            'subobject' => true,
+        ],
+        'GrossWeight' => [
+            'type' => 'WeightSeg',
+            'required' => false,
+            'subobject' => true,
         ],
         'License' => [
             'type' => '',
@@ -99,6 +104,18 @@ class ExportLineItem extends Base
             'subobject' => false,
             'comment' => 'Export license number',
             'maxLength' => '16',
+        ],
+        'ManufactureCountryCode' => [
+            'type' => 'CountryCode',
+            'required' => false,
+            'subobject' => false,
+            'length' => '2',
+        ],
+        'ManufactureCountryName' => [
+            'type' => 'CountryName',
+            'required' => false,
+            'subobject' => false,
+            'maxLength' => '35',
         ],
     ];
 }
