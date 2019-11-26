@@ -58,6 +58,16 @@ class ShipmentResponse extends Base
             'required' => false,
             'subobject' => false,
         ],
+        'DHLInvoiceLanguageCode' => [
+            'type' => 'InvLanguageCode',
+            'required' => false,
+            'subobject' => false,
+        ],
+        'DHLInvoiceType' => [
+            'type' => 'InvoiceType',
+            'required' => false,
+            'subobject' => false,
+        ],
         'DHLRoutingCode' => [
             'type' => 'string',
             'required' => false,
@@ -178,7 +188,7 @@ class ShipmentResponse extends Base
             'subobject' => true,
             'multivalues' => true,
         ],
-        'BarCodes' => [
+        'Barcodes' => [
             'type' => 'BarCodes',
             'required' => false,
             'subobject' => true,
@@ -301,6 +311,11 @@ class ShipmentResponse extends Base
             'subobject' => true,
         ],
         'LabelImage' => [
+            'type' => 'LabelImage',
+            'required' => false,
+            'subobject' => true,
+        ],
+        'Label' => [
             'type' => 'LabelImage',
             'required' => false,
             'subobject' => true,
