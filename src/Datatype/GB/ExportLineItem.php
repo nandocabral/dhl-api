@@ -75,9 +75,14 @@ class ExportLineItem extends \Mtc\Dhl\Datatype\AM\ExportLineItem
             'subobject' => false,
         ], 
         'Weight' => [
-            'type' => '',
+            'type' => 'Weight',
             'required' => false,
-            'subobject' => false,
+            'subobject' => true,
+        ],
+        'GrossWeight' => [
+            'type' => 'GrossWeight',
+            'required' => false,
+            'subobject' => true,
         ], 
         'License' => [
             'type' => '',
@@ -91,5 +96,17 @@ class ExportLineItem extends \Mtc\Dhl\Datatype\AM\ExportLineItem
             'comment' => 'Export license number',
             'maxLength' => '16',
         ], 
+        'ManufactureCountryCode' => [
+            'type' => 'CountryCode',
+            'required' => false,
+            'subobject' => false,
+            'length' => '2',
+        ],
+        'ManufactureCountryName' => [
+            'type' => 'CountryName',
+            'required' => false,
+            'subobject' => false,
+            'maxLength' => '35',
+        ],
     ];
 }

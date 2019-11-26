@@ -81,12 +81,22 @@ class ExportDeclaration extends \Mtc\Dhl\Datatype\AM\ExportDeclaration
             'required' => false,
             'subobject' => false,
         ], 
-        'ExportLineItems' => [
+        'InvoiceNumber' => [
+            'type' => 'string',
+            'required' => true,
+            'subobject' => false,
+        ],
+        'InvoiceDate' => [
+            'type' => 'date',
+            'required' => true,
+            'subobject' => false,
+        ],
+        'ExportLineItem' => [
             'type' => 'ExportLineItem',
             'required' => false,
             'subobject' => true,
-            'multivalues' => true,
             'disableParentNode' => true,
-        ], 
+            'multivalues' => true,
+        ],
     ];
 }

@@ -15,7 +15,7 @@ class SpecialService extends \Mtc\Dhl\Datatype\AM\SpecialService
      */
     protected $params = [
         'SpecialServiceType' => [
-            'type' => 'string',
+            'type' => 'SpecialServiceType',
             'required' => false,
             'subobject' => false,
             'comment' => 'Special Service codes',
