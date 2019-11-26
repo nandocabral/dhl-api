@@ -5,9 +5,9 @@ namespace Mtc\Dhl\Datatype\AM;
 use Mtc\Dhl\Datatype\Base;
 
 /**
- * ExportDeclaration Request model for DHL API
+ * SpecialService Request model for DHL API
  */
-class ExportDeclaration extends Base
+class SpecialService extends Base
 {
     /**
      * Is this object a subobject
@@ -20,89 +20,57 @@ class ExportDeclaration extends Base
      * @var array
      */
     protected $params = [
-        'InterConsignee' => [
-            'type' => '',
+        'SpecialServiceType' => [
+            'type' => 'SpecialServiceType',
             'required' => false,
             'subobject' => false,
+            'comment' => 'Special Service codes',
+            'maxLength' => '3',
         ],
-        'IsPartiesRelation' => [
+        'CommunicationAddress' => [
+            'type' => 'CommunicationAddress',
+            'required' => false,
+            'subobject' => false,
+            'comment' => 'Communications line number: phone number, fax number',
+            'maxLength' => '50',
+        ],
+        'CommunicationType' => [
+            'type' => 'CommunicationType',
+            'required' => false,
+            'subobject' => false,
+            'comment' => 'Communications line type (P: phone, F: fax)',
+            'length' => '1',
+            'enumeration' => 'P,F',
+        ],
+        'SpecialServiceDesc' => [
+            'type' => 'SpecialServiceDesc',
+            'required' => false,
+            'subobject' => false,
+            'comment' => 'Special Service Description',
+            'maxLength' => '45',
+        ],
+        'ChargeValue' => [
+            'type' => 'Money',
+            'required' => false,
+            'subobject' => false,
+            'comment' => 'Monetary amount (with 2 decimal precision)',
+            'minInclusive' => '0.00',
+            'maxInclusive' => '9999999999.99',
+        ],
+        'CurrencyCode' => [
+            'type' => 'CurrencyCode',
+            'required' => false,
+            'subobject' => false,
+            'comment' => 'ISO currency code',
+            'length' => '3',
+        ],
+        'IsWaived' => [
             'type' => 'YesNo',
             'required' => false,
             'subobject' => false,
             'comment' => 'Boolean flag',
             'length' => '1',
             'enumeration' => 'Y,N',
-        ],
-        'ECCN' => [
-            'type' => '',
-            'required' => false,
-            'subobject' => false,
-        ],
-        'SignatureName' => [
-            'type' => 'SignatureName',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'Signature name',
-            'maxLength' => '35',
-        ],
-        'SignatureTitle' => [
-            'type' => 'SignatureTitle',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'Signature title',
-            'maxLength' => '35',
-        ],
-        'ExportReason' => [
-            'type' => 'ExportReason',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'Export reason',
-            'length' => '1',
-        ],
-        'ExportReasonCode' => [
-            'type' => 'ExportReasonCode',
-            'required' => false,
-            'subobject' => false,
-            'comment' => 'Export reason code (P:Permanent, T:Temporary, R:Re-Export)',
-            'length' => '1',
-            'enumeration' => 'P,T,R',
-        ],
-        'SedNumber' => [
-            'type' => 'SEDNumber',
-            'required' => false,
-            'subobject' => false,
-            'comment' => '',
-            'enumeration' => 'FTSR,XTN,SAS',
-        ],
-        'SedNumberType' => [
-            'type' => 'SEDNumberType',
-            'required' => false,
-            'subobject' => false,
-            'comment' => '',
-            'length' => '1',
-            'enumeration' => 'F,X,S',
-        ],
-        'MxStateCode' => [
-            'type' => '',
-            'required' => false,
-            'subobject' => false,
-        ],
-        'InvoiceNumber' => [
-            'type' => 'string',
-            'required' => true,
-            'subobject' => false,
-        ],
-        'InvoiceDate' => [
-            'type' => 'date',
-            'required' => true,
-            'subobject' => false,
-        ],
-        'ExportLineItem' => [
-            'type' => 'ExportLineItem',
-            'required' => false,
-            'subobject' => true,
-            'disableParentNode' => true,
-            'multivalues' => true,
         ],
     ];
 }
