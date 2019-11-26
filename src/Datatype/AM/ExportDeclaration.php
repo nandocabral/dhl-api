@@ -87,10 +87,22 @@ class ExportDeclaration extends Base
             'required' => false,
             'subobject' => false,
         ],
+        'InvoiceNumber' => [
+            'type' => 'string',
+            'required' => true,
+            'subobject' => false,
+        ],
+        'InvoiceDate' => [
+            'type' => 'date',
+            'required' => true,
+            'subobject' => false,
+        ],
         'ExportLineItem' => [
             'type' => 'ExportLineItem',
             'required' => false,
             'subobject' => true,
+            'disableParentNode' => true,
+            'multivalues' => true,
         ],
     ];
 }
