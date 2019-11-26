@@ -1,6 +1,6 @@
 {
-    "name": "mtcmedia/dhl-api",
-    "description": "PHP library to communicate with the DHL XML Services.",
+    "name": "tbs-trappy/dhl-api",
+    "description": "PHP library to communicate with the DHL XML Services that actually works.",
     "require": {
         "php": ">=7.0"
     },
