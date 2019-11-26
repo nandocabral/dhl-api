@@ -123,29 +123,32 @@ abstract class Base
         $xml = simplexml_load_string(str_replace('req:', '', $xml));
         $parts = explode('\\', get_class($this));
         $className = array_pop($parts);
-        dd($className);
-        foreach ($xml->children() as $child) {
-            $childName = $child->getName();
+//        echo $className."<br/>";
+        // hardcode to skip ExportDeclaration nodes
+        if ($className !== 'ExportDeclaration') {
+            foreach ($xml->children() as $child) {
+                $childName = $child->getName();
 
-            if (isset($this->$childName) && is_object($this->$childName)) {
-                $this->$childName->initFromXml($child->asXML());
-            } elseif (isset($this->params[$childName]['multivalues']) && $this->params[$childName]['multivalues']) {
-                foreach ($child->children() as $sub_child) {
-                    $sub_child_name = $sub_child->getName();
-                    $child_class_name = implode('\\', $parts) . '\\' . $this->params[$sub_child_name]['type'];
-                    $child_class_name = str_replace('Entity', 'Datatype', $child_class_name);
-                    dd($child_class_name);
-                    if ('string' == $this->params[$sub_child_name]['type']) {
-                        $childObj = trim((string)$sub_child);
-                    } else {
-                        $childObj = new $child_class_name();
-                        $childObj->initFromXml($sub_child->asXML());
+                if (isset($this->$childName) && is_object($this->$childName)) {
+                    $this->$childName->initFromXml($child->asXML());
+                } elseif (isset($this->params[$childName]['multivalues']) && $this->params[$childName]['multivalues']) {
+                    foreach ($child->children() as $sub_child) {
+                        $sub_child_name = $sub_child->getName();
+                        $child_class_name = implode('\\', $parts) . '\\' . $this->params[$sub_child_name]['type'];
+                        $child_class_name = str_replace('Entity', 'Datatype', $child_class_name);
+//                        echo $child_class_name."<br/>";
+                        if ('string' == $this->params[$sub_child_name]['type']) {
+                            $childObj = trim((string)$sub_child);
+                        } else {
+                            $childObj = new $child_class_name();
+                            $childObj->initFromXml($sub_child->asXML());
+                        }
+                        $addMethodName = 'add' . ucfirst($sub_child_name);
+                        $this->$addMethodName($childObj);
                     }
-                    $addMethodName = 'add' . ucfirst($sub_child_name);
-                    $this->$addMethodName($childObj);
+                } elseif (isset($this->$childName) && ((string)$child)) {
+                    $this->$childName = trim((string)$child);
                 }
-            } elseif (isset($this->$childName) && ((string)$child)) {
-                $this->$childName = trim((string)$child);
             }
         }
     }
